@@ -101,8 +101,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 197, 68, 111),
       appBar: AppBar(
-        title: const Text("Calendário 📆", style: TextStyle(color: Colors.white),),
+        title: const Text(
+          "Calendário 📆",
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -111,7 +115,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
           onPressed: () {
             _restorableDatePickerRouteFuture.present();
           },
-          child: const Text('Abrir 📅'),
+          child: const Text('Abrir 📅',
+           style: TextStyle(color: Color.fromARGB(255, 211, 255, 224)),
+          ),
         ),
       ),
     );
