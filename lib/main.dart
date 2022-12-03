@@ -5,7 +5,7 @@ void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'Calendário';
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
   @override
   String? get restorationId => widget.restorationId;
 
-  final RestorableDateTime _selectedDate =
-      RestorableDateTime(DateTime.now());
+  final RestorableDateTime _selectedDate = RestorableDateTime(DateTime.now());
   late final RestorableRouteFuture<DateTime?> _restorableDatePickerRouteFuture =
       RestorableRouteFuture<DateTime?>(
     onComplete: _selectDate,
@@ -77,6 +76,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
     if (newSelectedDate != null) {
       setState(() {
         _selectedDate.value = newSelectedDate;
+        if (newSelectedDate == DateTime.now()) {
+          RichText(
+            text: TextSpan(
+              text: 'Futuro',
+              style: DefaultTextStyle.of(context).style,
+              children: const <TextSpan>[
+                TextSpan(
+                    text: 'bold',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: ' world!'),
+              ],
+            ),
+          );
+        }
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
               'Selected: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
@@ -88,12 +101,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Calendário 📆", style: TextStyle(color: Colors.white),),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
       body: Center(
         child: OutlinedButton(
           onPressed: () {
             _restorableDatePickerRouteFuture.present();
           },
-          child: const Text('Abrir Calendário 📆'),
+          child: const Text('Abrir 📅'),
         ),
       ),
     );
