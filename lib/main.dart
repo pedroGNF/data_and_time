@@ -27,11 +27,8 @@ class MyStatefulWidget extends StatefulWidget {
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
-/// RestorationProperty objects can be used because of RestorationMixin.
 class _MyStatefulWidgetState extends State<MyStatefulWidget>
     with RestorationMixin {
-  // In this example, the restoration ID for the mixin is passed in through
-  // the [StatefulWidget]'s constructor.
   @override
   String? get restorationId => widget.restorationId;
 
@@ -76,23 +73,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
     if (newSelectedDate != null) {
       setState(() {
         _selectedDate.value = newSelectedDate;
-        if (newSelectedDate == DateTime.now()) {
-          RichText(
-            text: TextSpan(
-              text: 'Futuro',
-              style: DefaultTextStyle.of(context).style,
-              children: const <TextSpan>[
-                TextSpan(
-                    text: 'bold',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: ' world!'),
-              ],
-            ),
-          );
-        }
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: const Duration(seconds: 3),
           content: Text(
-              'Selected: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
+              'Data escolhida: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
+                  action: SnackBarAction(
+              label: 'Fechar',
+              onPressed: () { },
+            ),
         ));
       });
     }
@@ -115,8 +103,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
           onPressed: () {
             _restorableDatePickerRouteFuture.present();
           },
-          child: const Text('Abrir 📅',
-           style: TextStyle(color: Color.fromARGB(255, 211, 255, 224)),
+          child: const Text(
+            'Abrir 📅',
+            style: TextStyle(color: Color.fromARGB(255, 211, 255, 224)),
           ),
         ),
       ),
