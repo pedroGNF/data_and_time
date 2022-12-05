@@ -69,20 +69,23 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
         _restorableDatePickerRouteFuture, 'date_picker_route_future');
   }
 
+  var amor = "Future";
   void _selectDate(DateTime? newSelectedDate) {
     if (newSelectedDate != null) {
       setState(() {
         _selectedDate.value = newSelectedDate;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          duration: const Duration(seconds: 3),
+          duration: const Duration(seconds: 6),
           content: Text(
               'Data escolhida: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
-                  action: SnackBarAction(
-              label: 'Fechar',
-              onPressed: () { },
-            ),
+          action: SnackBarAction(
+            label: 'Fechar',
+            onPressed: () {},
+          ),
         ));
       });
+    } else {
+      amor;
     }
   }
 
