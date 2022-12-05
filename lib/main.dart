@@ -69,24 +69,48 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
         _restorableDatePickerRouteFuture, 'date_picker_route_future');
   }
 
-  var amor = "Future";
   void _selectDate(DateTime? newSelectedDate) {
-    if (newSelectedDate != null) {
+     if (newSelectedDate == DateTime(2022, 12, 5)) {
       setState(() {
-        _selectedDate.value = newSelectedDate;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: const Duration(seconds: 6),
-          content: Text(
-              'Data escolhida: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
+           content: const Text(
+              'Presente'),
           action: SnackBarAction(
             label: 'Fechar',
             onPressed: () {},
           ),
         ));
       });
-    } else {
-      amor;
     }
+    if (newSelectedDate == DateTime(2022, 12, 6)){
+      setState(() {
+        _selectedDate.value = newSelectedDate!;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: const Duration(seconds: 6),
+           content: const Text(
+              'Futuro'),
+          action: SnackBarAction(
+            label: 'Fechar',
+            onPressed: () {},
+          ),
+        ));
+     });
+   }
+    if (newSelectedDate == DateTime(2022, 12, 4)){
+      setState(() {
+        _selectedDate.value = newSelectedDate!;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: const Duration(seconds: 6),
+           content: const Text(
+              'Passado'),
+          action: SnackBarAction(
+            label: 'Fechar',
+            onPressed: () {},
+          ),
+        ));
+     });
+   }
   }
 
   @override
@@ -108,7 +132,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
           },
           child: const Text(
             'Abrir 📅',
-            style: TextStyle(color: Color.fromARGB(255, 211, 255, 224)),
+            style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
           ),
         ),
       ),
