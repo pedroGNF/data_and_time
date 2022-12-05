@@ -69,13 +69,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
         _restorableDatePickerRouteFuture, 'date_picker_route_future');
   }
 
+  var presente = DateTime(2022, 12, 5);
+  var futuro = DateTime(2022, 12, 6);
+  var passado = DateTime(2022, 12, 4);
+
   void _selectDate(DateTime? newSelectedDate) {
-     if (newSelectedDate == DateTime(2022, 12, 5)) {
+    if (newSelectedDate == presente) {
+      _selectedDate.value = newSelectedDate!;
       setState(() {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: const Duration(seconds: 6),
-           content: const Text(
-              'Presente'),
+          content: const Text('Presente'),
           action: SnackBarAction(
             label: 'Fechar',
             onPressed: () {},
@@ -83,34 +87,32 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
         ));
       });
     }
-    if (newSelectedDate == DateTime(2022, 12, 6)){
+    if (newSelectedDate == futuro) {
       setState(() {
         _selectedDate.value = newSelectedDate!;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: const Duration(seconds: 6),
-           content: const Text(
-              'Futuro'),
+          content: const Text('Futuro'),
           action: SnackBarAction(
             label: 'Fechar',
             onPressed: () {},
           ),
         ));
-     });
-   }
-    if (newSelectedDate == DateTime(2022, 12, 4)){
+      });
+    }
+    if (newSelectedDate == passado) {
       setState(() {
         _selectedDate.value = newSelectedDate!;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: const Duration(seconds: 6),
-           content: const Text(
-              'Passado'),
+          content: const Text('Passado'),
           action: SnackBarAction(
             label: 'Fechar',
             onPressed: () {},
           ),
         ));
-     });
-   }
+      });
+    }
   }
 
   @override
